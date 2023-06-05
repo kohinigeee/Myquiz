@@ -1,0 +1,9 @@
+User:
+ user name varchar(255)
+ id : int
+
+quiz:
+    content : text
+    answer : varchar(255)
+    id : int
+    author_id : int
