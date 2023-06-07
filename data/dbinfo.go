@@ -60,7 +60,3 @@ func init() {
 
 	fmt.Println("dbinof::init succseeded connection")
 }
-
-func Sub1() {
-
-}

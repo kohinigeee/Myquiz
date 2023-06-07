@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"github/kohinigeee/data"
 	"html/template"
 	"net/http"
 )
@@ -9,7 +10,21 @@ import (
 func RegisterLoginInfo(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 
-	fmt.Print(r.PostForm)
+	nameid := r.PostForm.Get("nameid")
+	password := r.PostForm.Get("password")
+	logininfo := data.NewLoginInfo(nameid, password)
+
+	err := logininfo.Create()
+
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Println("RegisterLoginInfo::", err)
+		return
+	}
+
+	fmt.Print("hahs := ", logininfo.HashPass)
+	w.WriteHeader(http.StatusOK)
+	return
 }
 
 func RegisterLoginInfoGet(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +40,6 @@ func RegisterLoginInfoGet(w http.ResponseWriter, r *http.Request) {
 func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	switch r.Method {
 	case "GET":
-		fmt.Println("Call GET")
 		RegisterLoginInfoGet(w, r)
 	case "POST":
 		RegisterLoginInfo(w, r)

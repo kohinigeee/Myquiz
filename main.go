@@ -2,12 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github/kohinigeee/data"
 	"github/kohinigeee/handler"
 	"html/template"
 	"net/http"
 	"os"
 	"strconv"
+
+	_ "github/kohinigeee/lib"
 )
 
 func Quiz(w http.ResponseWriter, r *http.Request) {
@@ -46,9 +49,10 @@ func main() {
 	// http.HandleFunc("/quiz/get", GetQuiz)
 	// http.HandleFunc("/quiz/get_list", lib.RequestGetQuizByAuthorid)
 	http.HandleFunc("/register", handler.RegisterHandler)
+	http.HandleFunc("/index", handler.IndexHandler)
+	http.HandleFunc("/login", handler.LoginHandler)
 
-	// fmt.Println("Program is execution")
-	// fmt.Println("New Text")
+	fmt.Println("Program is execution")
 	server.ListenAndServe()
 
 }

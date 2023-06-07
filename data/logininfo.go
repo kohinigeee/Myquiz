@@ -2,7 +2,6 @@ package data
 
 import (
 	"errors"
-	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -13,8 +12,12 @@ func PasswordEncrypt(password string) (string, error) {
 	return string(hash), err
 }
 
-func CompareHashAndPassword(hash, password string) error {
-	return bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+func CompareHashAndPassword(hash, password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	if err == nil {
+		return true
+	}
+	return false
 }
 
 type LoginInfo struct {
@@ -69,12 +72,29 @@ func (info *LoginInfo) IsUniqueName() bool {
 	return !result
 }
 
-func (info *LoginInfo) Get() error {
-	var name string
-	err := mydb.QueryRow("select Nameid from logininfo where Nameid = $1", info.Nameid).Scan(&name)
+func (info *LoginInfo) CollectPassword(password string) bool {
+	return CompareHashAndPassword(info.HashPass, password)
+}
 
-	fmt.Println("name = ", name)
-	fmt.Printf("name = %T\n", name)
-	fmt.Print((name == ""))
-	return err
+func GetLoginInfo(nameid string) (LoginInfo, error) {
+	var info LoginInfo
+	err := mydb.QueryRow("select nameid, hashpass, accountid from logininfo where nameid = $1", nameid).Scan(&info.Nameid, &info.HashPass, &info.AccountId)
+
+	if err != nil {
+		return LoginInfo{}, err
+	}
+	return info, nil
+}
+
+func IsCollectInfo(nameid, password string) (LoginInfo, bool) {
+	info, err := GetLoginInfo(nameid)
+	if err != nil {
+		return info, false
+	}
+
+	if info.CollectPassword(password) {
+		return info, true
+	}
+
+	return info, false
 }
