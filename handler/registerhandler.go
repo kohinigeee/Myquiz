@@ -28,7 +28,7 @@ func RegisterLoginInfo(w http.ResponseWriter, r *http.Request) {
 }
 
 func RegisterLoginInfoGet(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("./static/account_register.html")
+	tmp, err := template.ParseFiles("./static/page/register/account_register.html")
 
 	if err != nil {
 		panic(err)

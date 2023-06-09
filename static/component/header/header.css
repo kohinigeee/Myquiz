@@ -1,0 +1,62 @@
+.nav-pills .nav-link.active {
+    background-color: #b94047;
+}
+
+.nav-pills .nav-link {
+    color : #b94047
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #b94047;
+    color: white;
+}
+
+.nav .nav-link.dropdown-toggle:focus,
+.nav .nav-link.dropdown-toggle:hover {
+    background-color: #b94047;
+    color: white;
+}
+
+.yoko_container {
+    white-space: nowrap;
+}
+
+.yoko_box {
+    display: inline-block;
+}
+
+#account-dropdown {
+    text-align: right;
+}
+
+#header {
+    background-color: #b94047;
+    color: white;
+}
+
+#title {
+    margin: 5px;
+}
+
+#subtitle {
+    font-size: 22;
+    font-weight : bold;
+}
+
+#nav_underline {
+    border-top: 5px solid #b94047;
+}
+
+#nav_left {
+    padding : 0px 10px;
+}
+
+#brand {
+    color: #b94047;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.nav_items {
+    background-color: white;
+}

@@ -31,7 +31,7 @@ func loginPostHandle(w http.ResponseWriter, r *http.Request) {
 }
 
 func loginGetHandle(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("./static/login.html")
+	tmp, err := template.ParseFiles("./static/page/login/login.html")
 	if err != nil {
 		panic(err)
 	}

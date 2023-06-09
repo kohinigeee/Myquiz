@@ -23,7 +23,7 @@ func IndexHandle(w http.ResponseWriter, r *http.Request) {
 		account = data.Account{Name: "Guest Account", Id: 0}
 	}
 
-	tmp, _ := template.ParseFiles("./static/index.html")
+	tmp, _ := template.ParseFiles("./static/page/index/index2.html", "./static/component/header/header.html")
 	tmp.Execute(w, account)
 }
 
