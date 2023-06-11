@@ -1,0 +1,14 @@
+#login_header {
+    padding : 10px;
+    text-align: center;
+}
+
+#login_btn {
+    border : 2px outset;
+    border-color: #b94047;
+}
+
+#login_btn:hover {
+    cursor: pointer;
+    scale: 1.0;
+}

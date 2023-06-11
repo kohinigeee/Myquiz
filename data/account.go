@@ -35,3 +35,12 @@ func GetAccount(id int) (account Account, err error) {
 	err = mydb.QueryRow("select id, name from account where id = $1", id).Scan(&account.Id, &account.Name)
 	return
 }
+
+func CreateGuestAccount() Account {
+	guest := Account{Name: "Guest", Id: 0}
+	return guest
+}
+
+func (account *Account) IsGuest() bool {
+	return account.Id == 0
+}

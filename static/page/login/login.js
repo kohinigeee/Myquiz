@@ -25,7 +25,6 @@ function login(event) {
 
 $(document).ready(function(){
     var ele = document.querySelector("#loginform")
-    console.log(ele)
     ele.addEventListener('submit', login)
 }
 )

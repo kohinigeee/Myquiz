@@ -1,39 +1,106 @@
-    <div class="">
-        <nav class="navbar navbar-expand-sm navbar-dark mt-1 mt-0">
-            <div>
+{{ define "myheader" }}
+<link rel="stylesheet" href="./static/component/header/header.css">
+<div class="d-none d-sm-block">
+    <nav class="navbar navbar-expand navbar-dark mt-1 mt-0">
+        <div>
             <img src="static/img/brand_128.jpeg" width="50" height="50" class="d-inline-block align-top" alt="Logo">
-            <a class="navbar-brand " href="#" id="brand">
+            <a class="navbar-brand" href="#" id="brand">
                 MyQuiz
             </a>
         </div>
-            <div class="collapse navbar-collapse justify-content-center">
-                <ul id="nav_left" class="nav nav-pills my_header_container">
-                    <li class="nav-item">
-                        <a class="nav-link active my_header_item_active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">クイズ管理</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">新規クイズ作成</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="collapse navbar-collapse justify-content-center">
+            <ul id="nav_left" class="nav nav-pills my_header_container">
+                <li class="nav-item">
+                    <a class="nav-link my_header_item mytext-primary" href="/index">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="#">クイズ管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="#">新規クイズ作成</a>
+                </li>
+            </ul>
+        </div>
 
-            <div class="collapse navbar-collapse justify-content-end">
-                <ul class="nav nav-pills">
-                    <li class="nav-item dropdown">
-                        <a id="account_dropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
-                            role="button" aria-expanded="false">AccountName</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Action</a></li>
-                            <li><a class="dropdown-item">Action2</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <script src="./static/component/header/header.js"></script>
-        <link rel="stylesheet" href="./static/component/header/header.css">
-    </div>
-    <hr id="nav_underline">
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="nav nav-pills">
+                <li class="nav-item" id="header_nav_item_login_btn">
+                    <a class="nav-link" href="/login" id="login_btn">ログイン</a>
+                </li>
+                <li class="nav-item dropdown" id="header_nav_item_account_drop">
+                    <a id="account_dropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                        role="button" aria-expanded="false">Account Name</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item">Action</a></li>
+                        <li><a class="dropdown-item">Action2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <script src="./static/component/header/header.js"></script>
+</div>
+
+<div class="d-block d-sm-none">
+    <nav class="navbar mybg-primary">
+        <div>
+            <img src="static/img/brand_128.jpeg" width="50" height="50" class="d-inline-block align-top" alt="Logo">
+            <a class="navbar-brand" id="mobile_brand" href="#">MyQuiz</a>
+        </div>
+
+        <div class="justify-content-center">
+            <ul class="nav nav-pills">
+                <li class="nav-item" id="mobile_nav_item_login_btn">
+                    <a class="nav-link" href="/login" id="mobile_login_btn">ログイン</a>
+                </li>
+                <li class="nav-item dropdown" id="mobile_nav_item_account_drop">
+                    <a id="mobile_account_dropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+                        role="button" aria-expanded="false">Account Name</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item">Action</a></li>
+                        <li><a class="dropdown-item">Action2</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <button class="navbar-toggler mybg-secondary" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" id="hamburger"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <hr>
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link bold" href="/index">ホーム</a>
+                    <hr>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bold not_allowed_guest" href="#">クイズ管理</a>
+                    <hr>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link bold not_allowed_guest" href="#">新規クイズ作成</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<hr id="nav_underline">
+{{ end }}
+
+{{ define "myfooter" }}
+<div class="parent_container">
+    <nav class="navbar navbar-expand mybg-secondary">
+        <div class="collapse navbar-collapse justify-content-center">
+            <img src="static/img/brand_128_white.png" class="d-inline-block align-top" width="50" height="50"
+                alt="Logo">
+            <a class="navbar-brand mytext-secondary" href="#" id="my_footer_brand">
+                MyQuiz
+            </a>
+        </div>
+    </nav>
+</div>
+<link rel="stylesheet" href="./static/component/footer/footer.css">
+{{ end }}

@@ -7,23 +7,31 @@ import (
 	"net/http"
 )
 
+func sample() bool {
+	return true
+}
 func IndexHandle(w http.ResponseWriter, r *http.Request) {
 	sesison := lib.GetGlobalSessions()
 	sess := sesison.SessionStart(w, r)
-	id := sess.Get("id")
 
-	if id == nil {
-		id = 0
-		sess.Set("id", id)
+	account_i := sess.Get("account")
+
+	if account_i == nil {
+		account_i = data.CreateGuestAccount()
+		sess.Set("account", account_i.(data.Account))
 	}
 
-	account, err := data.GetAccount(id.(int))
+	account := account_i.(data.Account)
 
+	fname1 := "./static/page/index/index.html"
+
+	funcMap := template.FuncMap{"isguest": account.IsGuest}
+	tmp := template.New("index.html").Funcs(funcMap)
+	tmp, err := tmp.ParseFiles(fname1, "./static/component/header/header.html")
 	if err != nil {
-		account = data.Account{Name: "Guest Account", Id: 0}
+		panic(err)
 	}
 
-	tmp, _ := template.ParseFiles("./static/page/index/index2.html", "./static/component/header/header.html")
 	tmp.Execute(w, account)
 }
 
