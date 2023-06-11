@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github/kohinigeee/data"
 	"github/kohinigeee/handler"
+	"github/kohinigeee/handlerapi"
 	"html/template"
 	"net/http"
 	"os"
@@ -51,6 +52,8 @@ func main() {
 	http.HandleFunc("/register", handler.RegisterHandler)
 	http.HandleFunc("/index", handler.IndexHandler)
 	http.HandleFunc("/login", handler.LoginHandler)
+
+	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
 
 	fmt.Println("Program is execution")
 	server.ListenAndServe()

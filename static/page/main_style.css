@@ -1,0 +1,26 @@
+html, body {
+    height: 100%;
+    margin : 0px;
+}
+
+.mybg-primary {
+    background-color: white;
+}
+
+.mybg-secondary {
+    background-color: #b94047;
+}
+
+.mytext-primary {
+    color : #b94047;
+}
+
+.mytext-secondary {
+    color: white;
+}
+
+.myborder-primary {
+    border : 2px solid;
+    border-color: #b94047;
+    padding : 2px;
+}

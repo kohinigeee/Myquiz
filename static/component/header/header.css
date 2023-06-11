@@ -1,0 +1,79 @@
+.nav-pills .nav-link.active {
+    background-color: #b94047;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #b94047;
+    color: white;
+}
+
+.nav .nav-link.dropdown-toggle:focus,
+.nav .nav-link.dropdown-toggle:hover {
+    background-color: #b94047;
+    color: white;
+}
+
+#account-dropdown {
+    text-align: right;
+}
+
+#nav_underline {
+    border-top: 5px solid #b94047;
+}
+
+#nav_left {
+    padding : 0px 10px;
+}
+
+#brand {
+    color: #b94047;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#mobile_brand {
+    color: #b94047;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#login_btn {
+    background-color: #b94047;
+    color: white;
+}
+
+#login_btn:hover {
+    transform: scale(1.1);
+}
+
+#mobile_login_btn {
+    background-color: #b94047;
+    color: white;
+}
+
+#mobile_login_btn:hover {
+    transform: scale(1.1);
+}
+
+#mobile_account_dropdown {
+    text-align: right;
+}
+
+#nav_underline {
+    border: 3px solid #b94047;
+    width: 99.5%;
+    margin : 0;
+    padding: 0;
+}
+
+.nav-link {
+    color :#b94047;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#hamburger {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}

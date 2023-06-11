@@ -24,14 +24,20 @@ func loginPostHandle(w http.ResponseWriter, r *http.Request) {
 	session := lib.GetGlobalSessions()
 	sess := session.SessionStart(w, r)
 
-	sess.Set("id", info.AccountId)
+	account, err := data.GetAccount(info.AccountId)
+	if err != nil {
+		w.WriteHeader(http.StatusServiceUnavailable)
+		return
+	}
+
+	sess.Set("account", account)
 
 	w.WriteHeader(http.StatusOK)
 	return
 }
 
 func loginGetHandle(w http.ResponseWriter, r *http.Request) {
-	tmp, err := template.ParseFiles("./static/login.html")
+	tmp, err := template.ParseFiles("./static/page/login/login.html", "./static/component/header/header.html")
 	if err != nil {
 		panic(err)
 	}

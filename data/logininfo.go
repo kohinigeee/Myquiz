@@ -48,6 +48,7 @@ func (info *LoginInfo) Create() error {
 		return err
 	}
 
+	info.AccountId = account.Id
 	statement := "insert into logininfo ( nameid, hashpass, accountid ) values ($1, $2, $3)"
 
 	stmt, err := mydb.Prepare(statement)
