@@ -2,3 +2,7 @@ html, body {
     height: 100%;
     margin : 0;
 }
+
+#my_footer_brand:hover {
+   color: white; 
+}

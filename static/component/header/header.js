@@ -15,6 +15,18 @@ function item_activate() {
    })
 }
 
+function logout(event) {
+   event.preventDefault()
+
+   fetch("/logout")
+   .then( function (response) {
+      document.location.assign("/index")
+   })
+   .catch( error => {
+      console.error(error)
+   })
+}
+
 $(document).ready( function() {
     $(".my_header_container").mouseenter(function() {
        $(".my_header_item_active").toggleClass("active")
@@ -23,6 +35,8 @@ $(document).ready( function() {
     $(".my_header_container").mouseleave(function() {
        $(".my_header_item_active").toggleClass("active")
     })
+
+    $(".logout_btn").on("click", logout)
 
     fetch("/account")
     .then(response => response.json())

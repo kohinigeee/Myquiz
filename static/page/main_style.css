@@ -24,3 +24,7 @@ html, body {
     border-color: #b94047;
     padding : 2px;
 }
+
+.hover_up_btn:hover {
+    scale: 1.1;
+}

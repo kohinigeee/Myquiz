@@ -52,6 +52,8 @@ func main() {
 	http.HandleFunc("/register", handler.RegisterHandler)
 	http.HandleFunc("/index", handler.IndexHandler)
 	http.HandleFunc("/login", handler.LoginHandler)
+	http.HandleFunc("/logout", handler.LogoutHandler)
+	http.HandleFunc("/manager", handler.QuizManagerHandler)
 
 	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
 
