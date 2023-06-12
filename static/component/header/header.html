@@ -14,7 +14,7 @@
                     <a class="nav-link my_header_item mytext-primary" href="/index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="#">クイズ管理</a>
+                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="/manager">クイズ管理</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="#">新規クイズ作成</a>
@@ -33,6 +33,7 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item">Action</a></li>
                         <li><a class="dropdown-item">Action2</a></li>
+                        <li><a class="dropdown-item logout_btn">ログアウト</a></li>
                     </ul>
                 </li>
             </ul>
@@ -44,7 +45,7 @@
 <div class="d-block d-sm-none">
     <nav class="navbar mybg-primary">
         <div>
-            <img src="static/img/brand_128.jpeg" width="50" height="50" class="d-inline-block align-top" alt="Logo">
+            <img src="static/img/brand_128.jpeg" width="40" height="40" class="d-inline-block align-top" alt="Logo">
             <a class="navbar-brand" id="mobile_brand" href="#">MyQuiz</a>
         </div>
 
@@ -58,7 +59,10 @@
                         role="button" aria-expanded="false">Account Name</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item">Action</a></li>
+                        <hr>
                         <li><a class="dropdown-item">Action2</a></li>
+                        <hr>
+                        <li><a class="dropdown-item logout_btn" href="#">ログアウト</a></li>
                     </ul>
                 </li>
             </ul>
@@ -96,7 +100,7 @@
         <div class="collapse navbar-collapse justify-content-center">
             <img src="static/img/brand_128_white.png" class="d-inline-block align-top" width="50" height="50"
                 alt="Logo">
-            <a class="navbar-brand mytext-secondary" href="#" id="my_footer_brand">
+            <a class="navbar-brand mytext-secondary" href="/index" id="my_footer_brand">
                 MyQuiz
             </a>
         </div>

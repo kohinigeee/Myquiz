@@ -1,0 +1,16 @@
+.my_question_flame {
+    border : 2px groove black;
+    border-radius: 8px;
+}
+
+.my_question_textarea {
+    border : none;
+    resize: none;
+    background-color: white;
+}
+
+.my_question_card_hensyu_btn:focus,
+.my_question_card_hensyu_btn:active {
+    outline: none;
+    box-shadow: none;
+}
