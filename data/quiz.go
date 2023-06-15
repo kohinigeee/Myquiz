@@ -9,6 +9,10 @@ type Quiz struct {
 	AuthorsId int    `json: "author_id"`
 }
 
+func NewQuiz(question, answer string, authorid int) Quiz {
+	return Quiz{Id: 0, Question: question, Answer: answer, AuthorsId: authorid}
+}
+
 func (quiz *Quiz) Create() error {
 	statement := "insert into quiz (problem, answer, author_id) values ($1, $2, $3) returning id"
 

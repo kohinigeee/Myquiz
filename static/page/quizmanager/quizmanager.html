@@ -23,54 +23,19 @@
     <script src="./static/page/quizmanager/quizmanager.js"></script>
 </head>
 
-<body>
-    <div class="h-100 flex-column d-flex">
+<body class="">
+    <div class="flex-column d-flex justify-content-center">
         {{ template "myheader" }}
 
-        <div id="contents" class="d-flex flex-column justify-content-center">
 
-            <!-- <div class="container">
-                <div class="row d-flex justify-content-center">
-                    <div class="col-10 col-lg-8 my_question_flame mt-2 d-inline-block justify-content-center mybg-secondary">
-                        <p class="quistion_id d-none">1</p>
-                        <div class="mt-2 ml-2 mr-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title d-inline mytext-primary" style="font-weight: bold;">Question
-                                    </h5>
-                                    <hr>
-                                    <textarea readonly class="card-text form-control-plaintext my_question_textarea"
-                                        style="font-size: 102%;">「くらむぼん」、「雨にも負けず」、「銀河鉄道の夜」などで知られる宮沢賢治が作者であり、「因果交流」のようなワードが印象的である詩集のタイトルは？</textarea>
-                                </div>
-                            </div>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div class="card mt-2 mb-2 mr-0 col-8">
-                                        <div class="card-body pl-3 pt-1 pb-0">
-
-                                            <h6 class="mytext-primary" style="font-size: 120%; font-weight: bold;">Answer</h6>
-                                            <hr class="mt-1 mb-1">
-                                            <textarea readonly class="card-text form-control-plaintext my_question_textarea" rows="1">春と修羅</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex flex-fill justify-content-end" style="align-items: flex-end;">
-                                        <button class="my_question_card_hensyu_btn mb-2 mybg-secondary hover_up_btn" style="border: outset white 2px; border-radius: 5px;">
-                                            <img src="./static/img/hensyuu_ico.png">
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+        <div id="contents" class="d-flex  justify-content-center mt-5 mb-5 container-fluid">
+            <div class="row container-fluid">
+                <div id="cards_display" class="container-fluid col-12 col-lg-8">
                 </div>
-            </div> -->
-
+            </div>
         </div>
-        <div id="fillin" class="flex-grow-1"></div>
+        <div id="fillin" class="flex-fill flex-grow-1"></div>
+        <div class="container col-md-6 col-12"></div>
 
         {{ template "myfooter"}}
     </div>

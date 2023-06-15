@@ -54,8 +54,10 @@ func main() {
 	http.HandleFunc("/login", handler.LoginHandler)
 	http.HandleFunc("/logout", handler.LogoutHandler)
 	http.HandleFunc("/manager", handler.QuizManagerHandler)
+	http.HandleFunc("/createquiz", handler.CreateQuizHandler)
 
 	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
+	http.HandleFunc("/api/quizmanage", handlerapi.QuizManageAPIHandle)
 
 	fmt.Println("Program is execution")
 	server.ListenAndServe()

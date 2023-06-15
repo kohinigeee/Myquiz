@@ -1,7 +1,7 @@
 {{ define "myheader" }}
 <link rel="stylesheet" href="./static/component/header/header.css">
 <div class="d-none d-sm-block">
-    <nav class="navbar navbar-expand navbar-dark mt-1 mt-0">
+    <nav id="amy_top_navbar" class="navbar navbar-expand navbar-dark mt-1 mt-0">
         <div>
             <img src="static/img/brand_128.jpeg" width="50" height="50" class="d-inline-block align-top" alt="Logo">
             <a class="navbar-brand" href="#" id="brand">
@@ -17,7 +17,7 @@
                     <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="/manager">クイズ管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="#">新規クイズ作成</a>
+                    <a class="nav-link my_header_item mytext-primary not_allowed_guest" href="/createquiz">新規クイズ作成</a>
                 </li>
             </ul>
         </div>
@@ -80,11 +80,11 @@
                     <hr>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold not_allowed_guest" href="#">クイズ管理</a>
+                    <a class="nav-link bold not_allowed_guest" href="/manager">クイズ管理</a>
                     <hr>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link bold not_allowed_guest" href="#">新規クイズ作成</a>
+                    <a class="nav-link bold not_allowed_guest" href="/createquiz">新規クイズ作成</a>
                 </li>
             </ul>
         </div>
@@ -95,8 +95,8 @@
 {{ end }}
 
 {{ define "myfooter" }}
-<div class="parent_container">
-    <nav class="navbar navbar-expand mybg-secondary">
+<div class="parent_container d-flex">
+    <nav class="navbar navbar-expand mybg-secondary flex-grow-1">
         <div class="collapse navbar-collapse justify-content-center">
             <img src="static/img/brand_128_white.png" class="d-inline-block align-top" width="50" height="50"
                 alt="Logo">

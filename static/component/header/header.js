@@ -3,7 +3,6 @@ const HOSTURL = "http://localhost:8080"
 //nav_barのアイテムをurlに応じてアクティヴにする
 function item_activate() {
    url = document.URL.replace(HOSTURL, "")
-   console.log(url)
 
    $(".my_header_item").each(function() {
       var href = $(this).attr("href");

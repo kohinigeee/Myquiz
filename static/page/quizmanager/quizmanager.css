@@ -1,6 +1,12 @@
 .my_question_flame {
     border : 2px groove black;
     border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.my_question_flame:hover {
+    transform: scale(1.05);
 }
 
 .my_question_textarea {

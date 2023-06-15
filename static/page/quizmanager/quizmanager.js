@@ -1,80 +1,86 @@
-// function autoResize(textarea) {
-//     textarea.style.height = 'auto';
-//     textarea.style.height = textarea.scrollHeight + "px";
-// }
+async function getQuizList() {
+  var ans = undefined
+  await fetch("/api/quizmanage?genre=all")
+    .then(response => {
+      if (!response.ok) {
+        return
+      }
+      return response.json()
+    })
+    .then(data => {
+      ans = data
+    })
+    .catch(err => {
+      console.error(err)
+    })
 
-// function hensyuBtnEvent(event) {
-//     ele = event.currentTarget
-
-//     question_flame = ele.closest(".my_question_flame")
-//     tmp = $(question_flame).find(".my_question_textarea")
-//     question_area = tmp.get(0)
-//     question_answer = tmp.get(1)
-
-//     $(question_area).prop("readonly", false)
-//     $(question_answer).prop("readonly", false)
-//     $(question_area).focus()
-
-//     len = question_area.value.length
-//     question_area.setSelectionRange(len, len)
-
-
-//     ele.innerHTML = "<img src=./static/img/update_ico.png>"
-
-//     clone = ele.cloneNode(true)
-//     $(clone).on("click", updateBtnEvent)
-//     ele.parentNode.replaceChild(clone, ele)
-
-// }
-
-// function updateBtnEvent(event) {
-//     ele = event.currentTarget
-
-//     question_flame = ele.closest(".my_question_flame")
-//     tmp = $(question_flame).find(".my_question_textarea")
-//     question_area = tmp.get(0)
-//     question_answer = tmp.get(1)
-
-//     $(question_area).prop("readonly", true)
-//     $(question_answer).prop("readonly", true)
-
-//     ele.innerHTML = "<img src=./static/img/hensyuu_ico.png>"
-
-//     clone = ele.cloneNode(true)
-//     $(clone).on("click", hensyuBtnEvent)
-//     ele.parentNode.replaceChild(clone, ele)
-// }
+  return ans
+}
 
 
-// $(document).ready(function () {
-//     $(".my_question_textarea").each(function () {
-//         this.style.height = 'auto'
-//         this.style.height = this.scrollHeight + "px";
-//         console.log(this)
-//     })
+function push_card_torow(ele_row, quizcard) {
+  const html_container = '<div class="pl-md-5 d-flex container-fluid col-md-6 col-12"></div>'
+  let container = htmlStrToElement(html_container)
+  $(container).append(quizcard)
+  $(ele_row).append(container)
+}
 
-//     $(".my_question_textarea").on("input", function () {
-//         autoResize(this)
-//     })
+function create_cards_display_row() {
+  const html_row = '<div class="row cards_display_row d-flex mb-2"></div>'
+  let row = htmlStrToElement(html_row)
+  return row
+}
 
-//     $(".my_question_answer").each(function () {
-//         this.style.height = 'auto'
-//         this.style.height = this.scrollHeight + "px";
-//     })
+function adjust_row(row) {
+  const textareas = row.getElementsByClassName("question_text")
+  let max_height = 0
+  for ( let i = 0; i < textareas.length; ++i ) {
+    const height = textareas[i].scrollHeight
+    max_height = max_height < height ? height : max_height
+  }
 
-//     $(".my_question_answer").on("input", function () {
-//         autoResize(this)
-//     })
+  for ( let i = 0; i < textareas.length; ++i ) {
+    textareas[i].style.height = max_height+"px"
+  }
+}
 
-//     $(".my_question_card_hensyu_btn").on("click", hensyuBtnEvent)
-// });
+function adjust_rows() {
+  const rows = document.getElementsByClassName("cards_display_row")
 
-$(document).ready( function() {
-    var quiz = { Id : 2, Question : "胎児の際にゼウスの股に縫い付けられ、そのまま生まれたとされる酒、狂気などを象徴するギリシア神話のオリュンポス12神のひとりに数えられる神の名前はなに?", Answer : "デュオソニス"}
+  $(rows).each( function(index, ele) {
+    adjust_row(ele)
+  })
+}
 
-    ele = createQuizCard(quiz)
+function assing_cards(quizlist, max_cards_num_inrow) {
+  var cnt = 0
+  var row
+  for (let i = 0; i < quizlist.length; ++i) {
+    if (cnt == 0) {
+      row = create_cards_display_row()
+    }
 
-    $("#contents").append(ele)
+    push_card_torow(row, createQuizCard(quizlist[i]))
+    cnt += 1
+    if (cnt === max_cards_num_inrow) {
+      $("#cards_display").append(row)
+      cnt = 0
+    }
+  }
 
-    quizCardsInit()
+  if (cnt > 0) {
+    $("cards_display").append(row)
+  }
+
+}
+
+$(document).ready(async function () {
+
+  const max_cards_num_inrow = 2
+
+  var quizlist = await getQuizList()
+
+  assing_cards(quizlist, max_cards_num_inrow)
+  quizCardsInit()
+  // adjust_rows()
 })

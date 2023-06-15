@@ -13,6 +13,12 @@
     color: white;
 }
 
+#my_top_navbar {
+    position: fixed;
+    top : 0;
+    z-index: 9999;
+}
+
 #account-dropdown {
     text-align: right;
 }
