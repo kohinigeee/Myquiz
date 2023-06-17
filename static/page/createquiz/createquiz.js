@@ -3,10 +3,36 @@ function autoResize(textarea) {
     textarea.style.height = textarea.scrollHeight + "px";
 }
 
+function getFormVal(id) {
+    return $(id).val()
+}
+
 function submitBtnEventListner(event) {
     event.preventDefault()
 
+    let question = getFormVal("#question")
+    let answer = getFormVal("#answer")
+
+    let isValid = true 
+    if ( question === "" ) {
+       $("#question_alert").removeClass("d-none")
+       isValid = false 
+    } else {
+        $("#question_alert").addClass("d-none")
+    }
+
+    if ( answer === "" ) {
+       $("#answer_alert").removeClass("d-none")
+       isValid = false
+    } else {
+        $("#answer_alert").addClass("d-none")
+    }
+    if ( isValid === false ) return
+
     var form = document.querySelector("#new_quiz_form")
+    var val = form.val 
+    console.log(val)
+
     var formData = new FormData(form)
 
     fetch(form.action, {

@@ -1,0 +1,41 @@
+
+.my_question_flame {
+    border : 2px groove black;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.my_answer_flame {
+    border : 1px groove black;
+    border-radius: 5px;
+}
+
+.simple_quiz_top_next_btn {
+    transition: 0.2;
+}
+
+.simple_quiz_top_next_btn:hover {
+    scale: 1.1;
+}
+
+.simple_quiz_btn button {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 240px;
+    padding: 10px 25px;
+    color: #FFF;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+    background: #b94047;
+    border-radius: 30px;
+    border : solid 1px black;
+    border-bottom: solid 5px #682e31;
+}
+
+.simple_quiz_btn button:hover {
+    border-bottom: solid 2px #682e31;
+    transform: translateY(3px);
+}

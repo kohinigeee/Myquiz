@@ -37,6 +37,19 @@ func GetQuiz(w http.ResponseWriter, r *http.Request) {
 	w.Write(json)
 }
 
+func setHandler() {
+	http.HandleFunc("/register", handler.RegisterHandler)
+	http.HandleFunc("/index", handler.IndexHandler)
+	http.HandleFunc("/login", handler.LoginHandler)
+	http.HandleFunc("/logout", handler.LogoutHandler)
+	http.HandleFunc("/manager", handler.QuizManagerHandler)
+	http.HandleFunc("/createquiz", handler.CreateQuizHandler)
+	http.HandleFunc("/quizmode", handler.QuizModeHandle)
+
+	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
+	http.HandleFunc("/api/quizmanage", handlerapi.QuizManageAPIHandle)
+}
+
 func main() {
 
 	server := http.Server{
@@ -49,15 +62,8 @@ func main() {
 	// http.HandleFunc("/quiz", Quiz)
 	// http.HandleFunc("/quiz/get", GetQuiz)
 	// http.HandleFunc("/quiz/get_list", lib.RequestGetQuizByAuthorid)
-	http.HandleFunc("/register", handler.RegisterHandler)
-	http.HandleFunc("/index", handler.IndexHandler)
-	http.HandleFunc("/login", handler.LoginHandler)
-	http.HandleFunc("/logout", handler.LogoutHandler)
-	http.HandleFunc("/manager", handler.QuizManagerHandler)
-	http.HandleFunc("/createquiz", handler.CreateQuizHandler)
 
-	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
-	http.HandleFunc("/api/quizmanage", handlerapi.QuizManageAPIHandle)
+	setHandler()
 
 	fmt.Println("Program is execution")
 	server.ListenAndServe()

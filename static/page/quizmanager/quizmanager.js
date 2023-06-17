@@ -19,14 +19,14 @@ async function getQuizList() {
 
 
 function push_card_torow(ele_row, quizcard) {
-  const html_container = '<div class="pl-md-5 d-flex container-fluid col-md-6 col-12"></div>'
+  const html_container = '<div class="pl-md-5 container col-md-6 col-lg-4 col-12 m-0"></div>'
   let container = htmlStrToElement(html_container)
   $(container).append(quizcard)
   $(ele_row).append(container)
 }
 
 function create_cards_display_row() {
-  const html_row = '<div class="row cards_display_row d-flex mb-2"></div>'
+  const html_row = '<div class="row cards_display_row mb-2 d-flex justify-content-start"></div>'
   let row = htmlStrToElement(html_row)
   return row
 }
@@ -69,18 +69,33 @@ function assing_cards(quizlist, max_cards_num_inrow) {
   }
 
   if (cnt > 0) {
-    $("cards_display").append(row)
+    $("#cards_display").append(row)
   }
 
+
+}
+
+function addQuiz(quiz) {
+  const contHtmlStr = '<div class="container-fluid m-0 col-12 col-sm-6 col-xl-4 pl-md-5"></div>' 
+  let cont = htmlStrToElement(contHtmlStr)
+
+  $(cont).append(createQuizCard(quiz))
+  $("#cards_display_row").append(cont)
+}
+
+function addQuizList(quizlist) {
+  for ( let i = 0; i < quizlist.length; ++i ) {
+    addQuiz(quizlist[i])
+  }
 }
 
 $(document).ready(async function () {
 
-  const max_cards_num_inrow = 2
+  const max_cards_num_inrow = 3
 
   var quizlist = await getQuizList()
+  console.log(quizlist)
 
-  assing_cards(quizlist, max_cards_num_inrow)
-  quizCardsInit()
-  // adjust_rows()
+  addQuizList(quizlist)
+
 })
