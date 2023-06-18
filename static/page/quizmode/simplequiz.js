@@ -64,14 +64,11 @@ function createSimpleQuizFormElement() {
                         mybg-secondary">
                             <div class="mt-1 mb-2 p-0">
                                 <div class="card">
-                                    <div class="card-body pl-3 pr-1 pt-1 pb-1">
-                                        <h5 class="pb-1 card-title d-inline mytext-primary" style="font-weight: bold;">
+                                    <div id="question_card" class="card-body pl-3 pr-1 pt-1 pb-1">
+                                        <h4 class="pb-1 card-title d-inline mytext-primary" style="font-weight: bold;">
                                             Question
-                                        </h5>
+                                        </h4>
                                         <hr class="mt-1 mb-1">
-                                        <p id="question_text" class="card-text">
-                                            問題文テテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-                                        </p>
                                     </div>
                                 </div>
 
@@ -81,7 +78,7 @@ function createSimpleQuizFormElement() {
                                             Correct Answer
                                         </h5>
                                         <hr class="mt-1 mb-1">
-                                        <p id="answer_text" class="card-text" style="font-size: 115%;">正しい答え</p>
+                                        <p id="answer_text" class="card-text">正しい答え</p>
                                     </div>
 
                                     <div id="kaisetu" class="card-body pt-1">
@@ -124,17 +121,44 @@ function createSimpleQuizFormElement() {
     return htmlStrToElement(htmlStr)
 }
 
+function strToTypewriter(target, duration_sec, visible_sec) {
+    const htmlStr = "<div></div>"
+    div = htmlStrToElement(htmlStr)
+
+    for (let i = 0; i < target.length; ++i) {
+        const spanhtml = `<span style="font-size:1.3rem; visibility: hidden;">${target[i]}<span>`
+        const ele = htmlStrToElement(spanhtml)
+
+        $(ele).css("animation", `fade-in ${visible_sec}s ease-in-out`)
+        $(ele).css("animation-fillmode", "forwards")
+        $(ele).on("animationend", function () {
+            $(this).css("visibility", "visible")
+        })
+
+        const delay = i * duration_sec
+        const delays = `${delay}s`
+        $(ele).css("animation-delay", delays)
+        $(div).append(ele)
+    }
+    return div
+}
+
+
+
 //一問一答形式のクイズのクラス
 class SimpleQuiz {
 
     constructor(quiz) {
         this.quiz = quiz
-        this.result = undefined
         this.nextfunc = undefined
+        this.result = undefined
+        this.userAnswer = undefined
 
         this.ele = createSimpleQuizFormElement()
 
-        $(this.ele).find("#question_text").text(quiz.Question)
+        let question_text = strToTypewriter(quiz.Question, 0.07, 0.03)
+
+        $(this.ele).find("#question_card").append(question_text)
         $(this.ele).find("#answer_text").text(quiz.Answer)
         $(this.ele).find("#quiz_answer_btn").one("click", () => {
             this.checkAnswer()
@@ -145,11 +169,16 @@ class SimpleQuiz {
         this.nextfunc = func
     }
 
+    compareAnswer(user_answer, answer) {
+        return user_answer === answer
+    }
+
     checkAnswer() {
-        let user_answer = $(this.ele).find("#answer_form").val()
+        this.userAnswer = $(this.ele).find("#answer_form").val()
+        this.result = this.compareAnswer(this.userAnswer, this.quiz.Answer)
 
         let resultele
-        if (user_answer === this.quiz.Answer) {
+        if (this.result) {
             resultele = createSimpleQuizResultElementTrue()
             this.result = true
         } else {
@@ -172,4 +201,93 @@ class SimpleQuiz {
     remove() {
         $(this.ele).remove()
     }
+}
+
+//シンプルクイズのヒストリーカードの生成
+function createSimpleQuizHistoryElement(quizresult, no) {
+
+    const htmlStr = ` 
+                            <div
+                                class="my_question_history animate__animated animate__fadeInRight col-12 my_simple_question_history_flame mt-2 d-flex flex-column justify-content-end mybg-secondary">
+                                <div class="mt-2 p-1 flex-grow-1 d-flex flex-column">
+                                    <div id="card_top_info" class="d-flex justify-content-between mb-2">
+                                        <p id="simple_quiz_history_no" class="mytext-secondary" style="font-size: 1.3rem; font-weight: bold;">No.1
+                                        </p>
+                                        <div id="false_result_info"
+                                            class="d-none mybg-primary p-2 align-items-center result_top_info">
+                                            <img src="./static/img/xmark_ico.svg" width="30" height="30">
+                                            <p class="mytext-primary m-0 ml-1"
+                                                style="font-size: 1.2rem; color: #1e4588">不正解</p>
+                                        </div>
+
+                                        <div id="true_result_info"
+                                            class="d-none mybg-primary p-2 align-items-center result_top_info">
+                                            <img src="./static/img/circle_ico.svg" width="30" height="30">
+                                            <p class="mytext-primary m-0 ml-1" style="font-size: 1.2rem;">正解</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="card flex-grow-1">
+                                        <div class="card-body pl-2 pr-1 pt-2 pb-2">
+                                            <h5 class="pb-1 card-title d-inline mytext-primary"
+                                                style="font-weight: bold;">
+                                                Question
+                                            </h5>
+                                            <hr class="mt-1 mb-1">
+                                            <p id="simple_quiz_history_question" class="card-text my_question_textarea"
+                                                style="font-size: 100%;">
+                                                「くらむぼん」、「雨にも負けず」、「銀河鉄道の夜」などで知られる宮沢賢治が作者であり、「因果交流」のようなワードが印象的である詩集のタイトルは？
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="container-fluid">
+                                        <div class="row flex-grow-1 d-flex justify-content-between">
+                                            <div class="card mt-2 mb-2 col-5 d-flex flex-column justify-content-end">
+                                                <div class="d-block card-body pl-1 pr-1 pt-1 pb-0">
+
+                                                    <h6 class="card-text mytext-primary"
+                                                        style="font-size: 120%; font-weight: bold;">Answer</h6>
+                                                    <hr class="mt-0 mb-0">
+                                                    <p id="simple_quiz_history_answer" class="card-text form-control-plaintext my_question_textarea">
+                                                        春と修羅
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="ml-2 card mt-2 mb-2 col-6 d-flex flex-column justify-content-end">
+                                                <div class="d-block card-body pl-1 pr-1 pt-1 pb-0">
+
+                                                    <h6 class="card-text mytext-primary"
+                                                        style="font-size: 120%; font-weight: bold;">Your Answer</h6>
+                                                    <hr class="mt-0 mb-0">
+                                                    <p id="simple_quiz_history_user_answer" class="card-text form-control-plaintext my_question_textarea">
+                                                        春と修羅
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>`
+
+
+    ele = htmlStrToElement(htmlStr)
+
+    $(ele).find("#simple_quiz_history_no").text(`No.${no}`)
+    $(ele).find("#simple_quiz_history_question").text(quizresult.quiz.Question)
+    $(ele).find("#simple_quiz_history_answer").text(quizresult.quiz.Answer)
+    $(ele).find("#simple_quiz_history_user_answer").text(quizresult.userAnswer)
+    if (quizresult.result === true) {
+        $(ele).find("#true_result_info").removeClass("d-none")
+        $(ele).find("#true_result_info").addClass("d-flex")
+    } else {
+        $(ele).find("#false_result_info").removeClass("d-none")
+        $(ele).find("#false_result_info").addClass("d-flex")
+    }
+
+    return ele
 }

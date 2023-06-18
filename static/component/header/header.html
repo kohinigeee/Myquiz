@@ -1,6 +1,6 @@
 {{ define "myheader" }}
 <link rel="stylesheet" href="./static/component/header/header.css">
-<div class="d-none d-sm-block">
+<div class="d-none d-sm-block" style="border-bottom: 5px solid #b94047;">
     <nav id="amy_top_navbar" class="navbar navbar-expand navbar-dark mt-1 mt-0">
         <div>
             <img src="static/img/brand_128.jpeg" width="50" height="50" class="d-inline-block align-top" alt="Logo">
@@ -27,7 +27,7 @@
                 <li class="nav-item" id="header_nav_item_login_btn">
                     <a class="nav-link" href="/login" id="login_btn">ログイン</a>
                 </li>
-                <li class="nav-item dropdown" id="header_nav_item_account_drop">
+                <li class="nav-item dropdown mr-5" id="header_nav_item_account_drop">
                     <a id="account_dropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
                         role="button" aria-expanded="false">Account Name</a>
                     <ul class="dropdown-menu">
@@ -42,7 +42,7 @@
     <script src="./static/component/header/header.js"></script>
 </div>
 
-<div class="d-block d-sm-none">
+<div class="d-block d-sm-none" style="border-bottom: 5px #b94047 solid;">
     <nav class="navbar mybg-primary">
         <div>
             <img src="static/img/brand_128.jpeg" width="40" height="40" class="d-inline-block align-top" alt="Logo">
@@ -91,7 +91,6 @@
     </nav>
 </div>
 
-<hr id="nav_underline">
 {{ end }}
 
 {{ define "myfooter" }}

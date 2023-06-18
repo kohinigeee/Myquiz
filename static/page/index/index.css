@@ -1,0 +1,24 @@
+#result_info_container {
+    border: 2px #b94047 solid;
+    border-radius: 5px;
+    background-color: #b94047;
+}
+
+#seitouritu {
+    border-bottom: white 2px solid;
+}
+
+.my_question_flame {
+    border-bottom: black 2px outset;
+    border-right: black 2px outset;
+    border-top: black 3px outset;
+    border-left: black 3px outset;
+
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px;
+}
+
+.result_top_info {
+    border : white 2px solid;
+    border-radius: 5px;
+}

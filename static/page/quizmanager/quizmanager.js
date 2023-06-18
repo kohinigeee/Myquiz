@@ -76,26 +76,36 @@ function assing_cards(quizlist, max_cards_num_inrow) {
 }
 
 function addQuiz(quiz) {
-  const contHtmlStr = '<div class="container-fluid m-0 col-12 col-sm-6 col-xl-4 pl-md-5"></div>' 
+  const contHtmlStr = '<div class="card_container animate__animated animate__fadeInUpBig container-fluid m-0 col-12 col-sm-6 col-xl-4 pl-md-5"></div>' 
   let cont = htmlStrToElement(contHtmlStr)
 
   $(cont).append(createQuizCard(quiz))
   $("#cards_display_row").append(cont)
+
+  return cont
 }
 
-function addQuizList(quizlist) {
+function addQuizList(quizlist, cardeles) {
   for ( let i = 0; i < quizlist.length; ++i ) {
-    addQuiz(quizlist[i])
+    cardeles.push(addQuiz(quizlist[i]))
   }
+}
+
+function sleepms(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 $(document).ready(async function () {
 
-  const max_cards_num_inrow = 3
-
   var quizlist = await getQuizList()
-  console.log(quizlist)
+  var cardeles = []
 
-  addQuizList(quizlist)
+  addQuizList(quizlist, cardeles)
+  
+  for ( let i = 0; i < cardeles.length; ++i ) {
+    const s = i*0.05
+    const delay= `${s}s`
+    $(cardeles[i]).css("animation-delay", delay)
+  }
 
 })
