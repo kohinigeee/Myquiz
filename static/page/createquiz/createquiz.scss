@@ -1,0 +1,64 @@
+$primary-color: #b94047;
+$secondary-color : white;
+$shadow-color: #682e31;
+
+.my_simple_question_flame {
+    border : 2px groove black;
+    border-radius: 8px;
+}
+
+.my_simple_question_textarea {
+    border : none;
+    resize : none;
+    background-color: white;
+    font-size: 105%;
+}
+
+#commentary {
+    font-size: 95%;
+}
+
+
+#quiz_submit_btn {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 240px;
+    padding: 10px 25px;
+    color: #FFF;
+    transition: 0.2s ease-in-out;
+    font-weight: 600;
+    background: $primary-color; 
+    border-radius: 8px;
+    border : solid 1px black;
+    border-bottom: solid 5px $shadow-color;
+
+    &:hover {
+        border-bottom: solid 2px $shadow-color;
+        transform: translateY(3px);
+        cursor: pointer;
+    }
+}
+
+.option_col {
+    border: solid black 2px;
+    border-radius: 5px;
+
+    p {
+        color : $secondary-color;
+        font-weight: bold;
+        font-size : 1.2rem;
+    }
+
+    select {
+        font-size: 1.2rem;
+        color : $secondary-color;
+        background-color: $primary-color;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

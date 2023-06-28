@@ -10,6 +10,7 @@ function createQuizCard(quiz) {
                     <div class="col-12 my_question_flame mt-2 d-flex flex-column justify-content-end mybg-secondary">
                         <p class="question_id d-none">1</p>
                         <div class="mt-2 p-1 flex-grow-1 d-flex flex-column">
+
                             <div class="card flex-grow-1">
                                 <div class="card-body pl-2 pr-1 pt-2 pb-2">
                                     <h5 class="pb-1 card-title d-inline mytext-primary" style="font-weight: bold;">Question
@@ -49,9 +50,9 @@ function createQuizCard(quiz) {
     question_textarea = tmp.get(0)
     answer_textarea = tmp.get(1)
 
-    $(question_textarea).text(quiz.Question)
-    $(answer_textarea).text(quiz["Answer"])
-    $(quizcard).find(".question_id").text(quiz["Id"])
+    $(question_textarea).text(quiz.question)
+    $(answer_textarea).text(quiz.answer)
+    $(quizcard).find(".question_id").text(quiz.id)
 
     return quizcard;
 }

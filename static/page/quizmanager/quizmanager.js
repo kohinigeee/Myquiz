@@ -98,6 +98,7 @@ function sleepms(ms) {
 $(document).ready(async function () {
 
   var quizlist = await getQuizList()
+  console.log(quizlist)
   var cardeles = []
 
   addQuizList(quizlist, cardeles)

@@ -20,3 +20,17 @@
     outline: none;
     box-shadow: none;
 }
+
+.manager_title {
+    margin-left : 1rem;
+    border-bottom: 2px solid rgba(150, 150, 150, 0.527);
+    
+}
+
+.my_science_flame {
+    background-color: rgb(97, 209, 172);
+}
+
+.my_language_flame {
+    background-color: #b94047;
+}

@@ -46,8 +46,12 @@ func setHandler() {
 	http.HandleFunc("/createquiz", handler.CreateQuizHandler)
 	http.HandleFunc("/quizmode", handler.QuizModeHandle)
 
+	//testようのページ
+	http.HandleFunc("/testpage", handler.TestPageHandler)
+
 	http.HandleFunc("/account", handlerapi.AccountAPIHandler)
 	http.HandleFunc("/api/quizmanage", handlerapi.QuizManageAPIHandle)
+	http.HandleFunc("/api/quizoptions", handlerapi.QuizGenreAPIHandle)
 }
 
 func main() {

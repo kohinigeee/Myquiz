@@ -171,6 +171,7 @@ function createResulePageEle( quizresults ) {
 
 $(document).ready(async function () {
     quizlist = await getQuizList()
+    console.log(quizlist)
 
     gmanager = new GameManager(quizlist)
     gmanager.start()

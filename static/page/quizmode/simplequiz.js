@@ -87,7 +87,7 @@ function createSimpleQuizFormElement() {
                                             解説
                                         </h5>
                                         <hr class="mt-1 mb-1">
-                                        <p id="description_text" class="card-text" style="font-size: 95%;">解説
+                                        <p id="commentary_text" class="card-text" style="font-size: 95%;">解説
                                             ああああああああああああああああああああああああああああああああああああああああああああああああああああああああ
                                         </p>
                                     </div>
@@ -125,17 +125,18 @@ function strToTypewriter(target, duration_sec, visible_sec) {
     const htmlStr = "<div></div>"
     div = htmlStrToElement(htmlStr)
 
+    const start_delay = 0.5 
+
     for (let i = 0; i < target.length; ++i) {
-        const spanhtml = `<span style="font-size:1.3rem; visibility: hidden;">${target[i]}<span>`
+        const spanhtml = `<span style="font-size:1.25rem; visibility: hidden;">${target[i]}<span>`
         const ele = htmlStrToElement(spanhtml)
 
         $(ele).css("animation", `fade-in ${visible_sec}s ease-in-out`)
-        $(ele).css("animation-fillmode", "forwards")
         $(ele).on("animationend", function () {
             $(this).css("visibility", "visible")
         })
 
-        const delay = i * duration_sec
+        const delay = i * duration_sec + start_delay
         const delays = `${delay}s`
         $(ele).css("animation-delay", delays)
         $(div).append(ele)
@@ -156,10 +157,18 @@ class SimpleQuiz {
 
         this.ele = createSimpleQuizFormElement()
 
-        let question_text = strToTypewriter(quiz.Question, 0.07, 0.03)
+        let question_text = strToTypewriter(quiz.question, 0.05, 0.03)
 
         $(this.ele).find("#question_card").append(question_text)
-        $(this.ele).find("#answer_text").text(quiz.Answer)
+        $(this.ele).find("#answer_text").text(quiz.answer)
+
+        const commentary = quiz.commentary
+        if ( commentary !== "" ) {
+            $(this.ele).find("#commentary_text").text(commentary)
+        } else {
+            $(this.ele).find("#commentary_text").text("解説はありません")
+            $(this.ele).find("#commentary_text").css("opacity", 0.7)
+        }
         $(this.ele).find("#quiz_answer_btn").one("click", () => {
             this.checkAnswer()
         })
@@ -175,7 +184,7 @@ class SimpleQuiz {
 
     checkAnswer() {
         this.userAnswer = $(this.ele).find("#answer_form").val()
-        this.result = this.compareAnswer(this.userAnswer, this.quiz.Answer)
+        this.result = this.compareAnswer(this.userAnswer, this.quiz.answer)
 
         let resultele
         if (this.result) {
@@ -204,6 +213,7 @@ class SimpleQuiz {
 }
 
 //シンプルクイズのヒストリーカードの生成
+//quizresult : SimpleQuiz class
 function createSimpleQuizHistoryElement(quizresult, no) {
 
     const htmlStr = ` 
@@ -278,8 +288,8 @@ function createSimpleQuizHistoryElement(quizresult, no) {
     ele = htmlStrToElement(htmlStr)
 
     $(ele).find("#simple_quiz_history_no").text(`No.${no}`)
-    $(ele).find("#simple_quiz_history_question").text(quizresult.quiz.Question)
-    $(ele).find("#simple_quiz_history_answer").text(quizresult.quiz.Answer)
+    $(ele).find("#simple_quiz_history_question").text(quizresult.quiz.question)
+    $(ele).find("#simple_quiz_history_answer").text(quizresult.quiz.answer)
     $(ele).find("#simple_quiz_history_user_answer").text(quizresult.userAnswer)
     if (quizresult.result === true) {
         $(ele).find("#true_result_info").removeClass("d-none")

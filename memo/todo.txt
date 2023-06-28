@@ -1,0 +1,6 @@
+データベースのQuizをSimpleQuizに
+(各クイズタイプごとにデータベースへのリレーションを分ける)
+・予想変更ファイル
+simplequiz.go
+api_quizmanage.go
+createquiz系列のファイル

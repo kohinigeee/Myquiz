@@ -1,32 +1,55 @@
-.my_question_flame {
-    border : 2px groove black;
-    border-radius: 8px;
+.my_simple_question_flame {
+  border: 2px groove black;
+  border-radius: 8px;
 }
 
-.my_question_textarea {
-    border : none;
-    resize: none;
-    background-color: white;
+.my_simple_question_textarea {
+  border: none;
+  resize: none;
+  background-color: white;
+  font-size: 105%;
 }
 
-.button_solid004 button {
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0 auto;
-    max-width: 240px;
-    padding: 10px 25px;
-    color: #FFF;
-    transition: 0.2s ease-in-out;
-    font-weight: 600;
-    background: #b94047;
-    border-radius: 8px;
-    border : solid 1px black;
-    border-bottom: solid 5px #682e31;
+#commentary {
+  font-size: 95%;
 }
 
-.button_solid004 button:hover {
-    border-bottom: solid 2px #682e31;
-    transform: translateY(3px);
+#quiz_submit_btn {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 240px;
+  padding: 10px 25px;
+  color: #FFF;
+  transition: 0.2s ease-in-out;
+  font-weight: 600;
+  background: #b94047;
+  border-radius: 8px;
+  border: solid 1px black;
+  border-bottom: solid 5px #682e31;
 }
+#quiz_submit_btn:hover {
+  border-bottom: solid 2px #682e31;
+  transform: translateY(3px);
+  cursor: pointer;
+}
+
+.option_col {
+  border: solid black 2px;
+  border-radius: 5px;
+}
+.option_col p {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.option_col select {
+  font-size: 1.2rem;
+  color: white;
+  background-color: #b94047;
+}
+.option_col select:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=createquiz.css.map */
