@@ -1,4 +1,5 @@
-<!DOCTYPE html> <html>
+<!DOCTYPE html>
+<html>
 
 <head>
     <meta name="viewport" content="width=device-width, inictial-scale=1, charset=utf-8" />
@@ -15,24 +16,119 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
+
+
+
     <link rel="stylesheet" href="./static/page/main_style.css">
+    <link rel="stylesheet" href="./static/component/items/quizcard.css">
     <link rel="stylesheet" href="./static/page/quizmanager/quizmanager.css">
 
-    <script src="./static/component/items/quizcard.js"></script>
-    <script src="./static/page/quizmanager/quizmanager.js"></script>
+    <script src="./static/lib/api.js"></script>
+    <script src="./static/lib/dataconvert.js"></script>
 </head>
 
 <body>
-    <div class="h-100 flex-column d-flex justify-content-center">
+    <script src="./static/component/items/quizcard.js"></script>
+    <script src="./static/page/quizmanager/quizmanager.js"></script>
+
+    <div class="flex-column d-flex justify-content-center" style="min-height: 100vh;">
         {{ template "myheader" }}
+
+        <div id="test-modal" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header d-flex flex-column">
+                        <h3 class="mytext-primary" style="font-weight: bold;">Detail Informations</h3>
+                        <small class="mytext-primary">クイズの詳細情報の確認・更新をすることができます</small>
+                    </div>
+
+                    <div class="modal-body mybg-secondary mytext-primary">
+                        <div id="informations" class="mytext-secondary">
+                            <p>一問一答</p>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body pl-2 pr-1 pt-1 pb-1">
+                                <h4 class="pb-1 card-title d-inline" style="font-weight: bold;">
+                                    Question
+                                </h4>
+                                <hr class="mt-1 mb-1">
+                                <textarea id="question" name="question"
+                                    class="card-text form-control-plaintext my_simple_question_textarea"
+                                    placeholder="問題分を入力してください" required></textarea>
+                                <div id="question_alert" class="invisible">
+                                    <img src="./static/img/alert_ico.png" alt="アラート">
+                                    <small class="mytext-primary">問題文の入力は必須です</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="card pl-2 mt-2 mb-2 col-8">
+                                    <div class="card-body pl-2 pr-1 pt-1 pb-0">
+
+                                        <h4 class="card-text mytext-primary" style="font-weight: bold;">Answer</h4>
+                                        <hr class="mt-1 mb-1">
+                                        <textarea id="answer" name="answer"
+                                            class="card-text form-control-plaintext my_simple_question_textarea"
+                                            rows="1" placeholder="答えを入力してください" required></textarea>
+                                        <div id="answer_alert" class="invisible">
+                                            <img src="./static/img/alert_ico.png" alt="アラート">
+                                            <small class="mytext-primary">答えの入力は必須です</small>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="contents" class="d-flex  justify-content-center mt-5 mb-5 container-fluid">
             <div class="row container-fluid">
                 <div id="cards_display" class="container-fluid col-12  col-lg-10">
                     <h2 class="mytext-primary manager_title">Your Quiz</h2>
-                    <div id="cards_display_row" class="row d-flex justify-content-start"></div>
+                    <div id="cards_display_row" class="pl-2 pr-2 pl-md-0 pr-md-0 pb-2 row d-flex justify-content-start">
+                    </div>
+                    <div class="mt-5 justify-content-center d-flex">
+                        <nav class="justify-content-center d-flex col-6">
+                            <ul class="pagination pagination-lg d-flex flex-grow-1 justify-content-center">
+                                <li class="page_begin page-item">
+                                    <a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a>
+                                </li>
+                                <li class="page_back page-item">
+                                    <a class="page-link" href="#"><i class="fas fa-chevron-left"></i></a>
+                                </li>
+
+                                <li class="page_prev4 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_prev3 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_prev2 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_prev1 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_nowidx page-item active"><a class="mytext-primary page-link"
+                                        href="#">nan</a></li>
+                                <li class="page_next1 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_next2 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_next3 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_next4 page-item d-none"><a class="page-link" href="#">nan</a></li>
+                                <li class="page_next page-item">
+                                    <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+                                </li>
+                                <li class="page_last page-item">
+                                    <a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,105 @@
+.green_genre {
+  background-color: #006e54;
+}
+.green_genre h5 {
+  color: #006e54;
+}
+.green_genre h6 {
+  color: #006e54;
+}
+
+.red_genre {
+  background-color: #b94047;
+}
+.red_genre h5 {
+  color: #b94047;
+}
+.red_genre h6 {
+  color: #b94047;
+}
+
+.brown_genre {
+  background-color: #bf794e;
+}
+.brown_genre h5 {
+  color: #bf794e;
+}
+.brown_genre h6 {
+  color: #bf794e;
+}
+
+.pink_genre {
+  background-color: #aa4c8f;
+}
+.pink_genre h5 {
+  color: #aa4c8f;
+}
+.pink_genre h6 {
+  color: #aa4c8f;
+}
+
+.purple_genre {
+  background-color: #824880;
+}
+.purple_genre h5 {
+  color: #824880;
+}
+.purple_genre h6 {
+  color: #824880;
+}
+
+.lightblue_genre {
+  background-color: #2ca9e1;
+}
+.lightblue_genre h5 {
+  color: #2ca9e1;
+}
+.lightblue_genre h6 {
+  color: #2ca9e1;
+}
+
+.lightyellow_genre {
+  background-color: #dccb18;
+}
+.lightyellow_genre h5 {
+  color: #dccb18;
+}
+.lightyellow_genre h6 {
+  color: #dccb18;
+}
+
+.lightgreen_genre {
+  background-color: #b8d200;
+}
+.lightgreen_genre h5 {
+  color: #b8d200;
+}
+.lightgreen_genre h6 {
+  color: #b8d200;
+}
+
+.grey_genre {
+  background-color: #9ea1a3;
+}
+.grey_genre h5 {
+  color: #9ea1a3;
+}
+.grey_genre h6 {
+  color: #9ea1a3;
+}
+
+.myclose-btn {
+  position: relative;
+  left: 25px;
+  bottom: 10px;
+  border-radius: 100%;
+  border: none;
+  background-color: transparent;
+  opacity: 0.8;
+}
+.myclose-btn:hover {
+  opacity: 1;
+}
+.myclose-btn:focus {
+  outline: none;
+}/*# sourceMappingURL=quizcard.css.map */

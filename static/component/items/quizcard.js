@@ -4,12 +4,42 @@ function htmlStrToElement(htmlStr) {
     return dummyDiv.firstElementChild;
 }
 
-function createQuizCard(quiz) {
+function calcGenreColorClass( genre, genreId ) {
+    switch(genreId) {
+        case genre.scienceId:
+            return "green_genre"
+        case genre.literatureId:
+            return "red_genre"
+        case genre.socialId:
+            return "brown_genre"
+        case genre.musicId:
+            return "purple_genre"
+        case genre.subcultureId:
+            return "pink_genre"
+        case genre.sportsId:
+            return "lightblue_genre"
+        case genre.entertainmentId:
+            return "lightyellow_genre"
+        case genre.lifestyleId:
+            return "lightgreen_genre"
+        case genre.nongenreId:
+            return "grey_genre"
+    } 
+    return undefined
+}
+
+function createSimpleQuizCard(simplequiz, genres) {
     const htmlStr = ` 
                 <div class="row flex-grow-1 d-flex justify-content-center b-3">
-                    <div class="col-12 my_question_flame mt-2 d-flex flex-column justify-content-end mybg-secondary">
+                    <div class="col-12 my_question_flame mt-2 d-flex flex-column justify-content-end">
                         <p class="question_id d-none">1</p>
-                        <div class="mt-2 p-1 flex-grow-1 d-flex flex-column">
+                        <div id="modal_div" class="mt-2 p-1 flex-grow-1 d-flex flex-column">
+
+                            <div class="flex-grow-1 d-flex justify-content-end mb-2">
+                            <button class="not_modal_trigger myclose-btn" onclick="this.blur()">
+                                <img class="not_modal_trigger" src="./static/img/close_ico.svg" width="35" height="35">
+                            </button>
+                            </div>
 
                             <div class="card flex-grow-1">
                                 <div class="card-body pl-2 pr-1 pt-2 pb-2">
@@ -33,8 +63,8 @@ function createQuizCard(quiz) {
                                     </div>
 
                                     <div class="d-flex flex-fill justify-content-end" style="align-items: flex-end;">
-                                        <button class="my_question_card_hensyu_btn mb-2 mybg-secondary hover_up_btn" style="border: outset white 2px; border-radius: 5px;">
-                                            <img src="./static/img/hensyuu_ico.png">
+                                        <button class="mb-2 border-0 nonactive_btn" style="background-color: inherit">
+                                            <img src="./static/img/indetail_ico7.svg" hieght="25" width="30">
                                         </button>
                                     </div>
 
@@ -50,9 +80,18 @@ function createQuizCard(quiz) {
     question_textarea = tmp.get(0)
     answer_textarea = tmp.get(1)
 
-    $(question_textarea).text(quiz.question)
-    $(answer_textarea).text(quiz.answer)
-    $(quizcard).find(".question_id").text(quiz.id)
+    $(question_textarea).text(simplequiz.question)
+    $(answer_textarea).text(simplequiz.answer)
+    $(quizcard).find(".question_id").text(simplequiz.id)
+    console.log(simplequiz)
+    $(quizcard).find(".my_question_flame").addClass(calcGenreColorClass(genres, simplequiz.genre))
+    $(quizcard).find("#modal_div").on("click",(event)=>{
+        if ( $(event.target).is(".not_modal_trigger") ) {
+            return
+        }
+        console.log("question id=", $(quizcard).find(".question_id").text())
+        $("#test-modal").modal("show")
+    })
 
     return quizcard;
 }
@@ -104,24 +143,24 @@ function updateBtnEvent(event) {
     ele.parentNode.replaceChild(clone, ele)
 }
 
-function quizCardsInit() {
-    $(".my_question_textarea").each(function () {
-        this.style.height = 'auto'
-        this.style.height = this.scrollHeight + "px";
-    })
+// function quizCardsInit() {
+//     $(".my_question_textarea").each(function () {
+//         this.style.height = 'auto'
+//         this.style.height = this.scrollHeight + "px";
+//     })
 
-    $(".my_question_textarea").on("input", function () {
-        autoResize(this)
-    })
+//     $(".my_question_textarea").on("input", function () {
+//         autoResize(this)
+//     })
 
-    $(".my_question_answer").each(function () {
-        this.style.height = 'auto'
-        this.style.height = this.scrollHeight + "px";
-    })
+//     $(".my_question_answer").each(function () {
+//         this.style.height = 'auto'
+//         this.style.height = this.scrollHeight + "px";
+//     })
 
-    $(".my_question_answer").on("input", function () {
-        autoResize(this)
-    })
+//     $(".my_question_answer").on("input", function () {
+//         autoResize(this)
+//     })
 
-    $(".my_question_card_hensyu_btn").on("click", hensyuBtnEvent)
-}
+//     $(".my_question_card_hensyu_btn").on("click", hensyuBtnEvent)
+// }

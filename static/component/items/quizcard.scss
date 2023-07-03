@@ -1,0 +1,147 @@
+$genre_color1: #006e54;
+$genre_color2: #b94047;
+$genre_color3: #bf794e;
+$genre_color4: #aa4c8f;
+$genre_color5: #824880;
+$genre_color6: #2ca9e1;
+$genre_color7: #dccb18;
+$genre_color8: #b8d200;
+$genre_color9: #9ea1a3;
+
+.green_genre {
+    background-color: $genre_color1;
+
+    h5 {
+        color: $genre_color1;
+    }
+
+    h6 {
+        color: $genre_color1;
+    }
+
+}
+
+.red_genre {
+    background-color: $genre_color2;
+
+    h5 {
+        color: $genre_color2;
+    }
+
+    h6 {
+        color: $genre_color2;
+    }
+}
+
+.brown_genre {
+    background-color: $genre_color3;
+
+    h5 {
+        color: $genre_color3;
+    }
+
+    h6 {
+        color: $genre_color3;
+    }
+}
+
+
+.pink_genre {
+    background-color: $genre_color4;
+
+    h5 {
+        color: $genre_color4;
+    }
+
+    h6 {
+        color: $genre_color4;
+    }
+
+}
+
+.purple_genre {
+    background-color: $genre_color5;
+
+    h5 {
+        color: $genre_color5;
+    }
+
+    h6 {
+        color: $genre_color5;
+    }
+
+
+}
+
+.lightblue_genre {
+    background-color: $genre_color6;
+
+    h5 {
+        color: $genre_color6;
+    }
+
+    h6 {
+        color: $genre_color6;
+    }
+
+}
+
+.lightyellow_genre {
+    background-color: $genre_color7;
+
+    h5 {
+        color: $genre_color7;
+    }
+
+    h6 {
+        color: $genre_color7;
+    }
+
+
+}
+
+.lightgreen_genre {
+    background-color: $genre_color8;
+
+    h5 {
+        color: $genre_color8;
+    }
+
+    h6 {
+        color: $genre_color8;
+    }
+
+
+}
+
+.grey_genre {
+    background-color: $genre_color9;
+
+    h5 {
+        color: $genre_color9;
+    }
+
+    h6 {
+        color: $genre_color9;
+    }
+
+
+}
+
+.close-btn {
+    position: relative;
+    left: 25px;
+    bottom: 10px;
+    border-radius: 100%;
+    border: none;
+    background-color: transparent;
+    opacity: 0.8;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

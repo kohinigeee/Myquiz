@@ -1,14 +1,19 @@
 /* 臙脂色 #b94047 (185, 64, 71) */
 /* 不正解の色 #1e4588*/
 
-html, body {
+html,
+body {
     /* min-height: 100%; */
     min-height: 100vh;
-    margin : 0px;
+    margin: 0px;
 }
 
 .mybg-primary {
     background-color: white;
+}
+
+.mybg-primary2 {
+    background-color: #2b2b2b;
 }
 
 .mybg-secondary {
@@ -16,7 +21,7 @@ html, body {
 }
 
 .mytext-primary {
-    color : #b94047;
+    color: #b94047;
 }
 
 .mytext-secondary {
@@ -24,11 +29,23 @@ html, body {
 }
 
 .myborder-primary {
-    border : 2px solid;
+    border: 2px solid;
     border-color: #b94047;
-    padding : 2px;
+    padding: 2px;
+}
+
+.nonactive_btn:hover,
+.nonactive_btn:focus,
+.nonactive_btn:active {
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
 }
 
 .hover_up_btn:hover {
     scale: 1.1;
+}
+
+.inherit_color {
+    background-color: inherit;
 }
